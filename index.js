@@ -1,5 +1,6 @@
+const { getTable } = require("console.table");
 const inquirer = require("inquirer");
-const db = require("./lib/databaseLibrary");
+const db = require("./lib/connection");
 
 const initialChoice = [
   {
@@ -8,7 +9,7 @@ const initialChoice = [
     choices: ["View all Departments", "View all Roles", "View all Employess", "Add Department", "Add Role", "Add Employee", "Update Employee Role"],
     name: "initialChoice",
   },
-]; // how to repeat the above when finished choosing? //how do I display choices to view departments, roles, employees?
+];
 
 const newDepartment = [
   {
@@ -73,7 +74,6 @@ const updateEmployee = [
     choices: ["Engineering", "Finance", "Legal", "Sales", "Service"],
     name: "employeeRole",
   },
-  //how do I add the employee's new role?
 ];
 
 // this is where all my prompts go
@@ -100,12 +100,28 @@ function initialPrompt() {
         break;
       case "Update Employee Role":
         updateEmployee();
+        break;
+      default:
     }
   });
 }
 
 function getDepartments() {
-  db.query("SELECT * from department", (err, res) => {
+  db.query("SELECT * FROM department", (err, res) => {
+    console.table(res);
+    initialPrompt();
+  });
+}
+
+function getRoles() {
+  db.query("SELECT * FROM role", (err, res) => {
+    console.table(res);
+    initialPrompt();
+  });
+}
+
+function getEmployees() {
+  db.query("SELECT * FROM employee", (err, res) => {
     console.table(res);
     initialPrompt();
   });
@@ -119,8 +135,9 @@ function addDepartment() {
     });
   });
 }
+
 function addRole() {
-  db.query("SELECT * from department", (err, res) => {
+  db.query("SELECT * FROM department", (err, res) => {
     const departments = res.map((dep) => {
       return {
         name: dep.name,
@@ -154,6 +171,7 @@ function addRole() {
       });
   });
 }
+
 function addEmployee() {
   db.query("SELECT * from role", (err, res) => {
     const roles = res.map((role) => {
