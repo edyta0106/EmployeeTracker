@@ -103,14 +103,13 @@ function initialPrompt() {
         updateEmployee();
         break;
       default:
-        console.log("default");
+        initialPrompt();
     }
   });
 }
 
 function getDepartments() {
   db.query("SELECT * FROM department", (err, res) => {
-    console.log(res);
     console.table(res);
     initialPrompt();
   });
@@ -268,8 +267,8 @@ function updateEmployee() {
         ])
         .then((answer) => {
           db.query(
-            "INSERT INTO role(title, salary, department_id) VALUES (?, ?, ?)",
-            [answer.title, answer.salary, answer.department],
+            "INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?, ?, ?)",
+            [answer.firstName, answer.lastName, answer.employeeRole, answer.employeeManagernpm],
             (err, res) => {
               console.log("Updated Role");
               initialPrompt();

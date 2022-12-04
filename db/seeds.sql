@@ -24,3 +24,17 @@ VALUES ("Bob", "Mac", "Software Engineer", 1, 2)
 ("Shauna", "Sweet", 7, 8),
 ("Courtney", "Sells", 8, NULL)
 
+-- SELECT employee.id,
+-- employee.first_name,
+-- employee.last_name,
+-- title,
+-- salary, 
+-- name AS department,
+-- CONCAT(manger.first_name, " ", manger.last_name) AS manager
+-- FROM employee
+-- JOIN role
+-- ON employee.role_id = role.id
+-- JOIN department 
+-- ON role.department_id = department_id
+-- LEFT JOIN employee AS manager
+-- ON employee.manager_id = manager_id
