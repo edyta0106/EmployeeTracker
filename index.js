@@ -193,7 +193,7 @@ function updateEmployee() {
   db.query("SELECT * FROM employee", (err, res) => {
     const employee = res.map((employee) => {
       return {
-        name: employee.first_name + employee.last_name,
+        name: employee.first_name + " " + employee.last_name,
         value: employee.id,
       };
     });
@@ -222,7 +222,7 @@ function updateEmployee() {
         .then((answer) => {
           db.query(
             "INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?, ?, ?)",
-            [answer.firstName, answer.lastName, answer.employeeRole, answer.employeeManagernpm],
+            [answer.firstName, answer.lastName, answer.employeeRole, answer.employeeManager],
             (err, res) => {
               console.log("Updated Role");
               initialPrompt();
