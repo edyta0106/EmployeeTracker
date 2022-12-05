@@ -214,14 +214,14 @@ function updateEmployee() {
           },
           {
             type: "list",
-            message: "What is the Employee's role?",
+            message: "What is the Employee's new role?",
             choices: role,
             name: "employeeRole",
           },
         ])
         .then((answer) => {
           db.query(
-            "INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?, ?, ?)",
+            "INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
             [answer.firstName, answer.lastName, answer.employeeRole, answer.employeeManager],
             (err, res) => {
               console.log("Updated Role");
