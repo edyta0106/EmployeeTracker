@@ -15,26 +15,14 @@ VALUES ("Software Engineer", 120000, 1),
 ("Sales Lead", 100000, 4);
 
 INSERT INTO employee(first_name, last_name, role_id, manager_id)
-VALUES ("Bob", "Mac", 1, 2)
+VALUES 
 ("Ashley", "Dell", 2, NULL),
-("Nick", "Money", 3, 4),
 ("Sarah", "Rich", 4, NULL),
-("Tom", "Smart", 5, 6),
 ("Frank", "Genius", 6, NULL),
-("Shauna", "Sweet", 7, 8),
-("Courtney", "Sells", 8, NULL);
+("Courtney", "Sells", 8, NULL),
+("Bob", "Mac", 1, 1),
+("Nick", "Money", 3, 2),
+("Tom", "Smart", 5, 3),
+("Shauna", "Sweet", 7, 4);
 
--- SELECT employee.id,
--- employee.first_name,
--- employee.last_name,
--- title,
--- salary, 
--- name AS department,
--- CONCAT(manger.first_name, " ", manger.last_name) AS manager
--- FROM employee
--- JOIN role
--- ON employee.role_id = role.id
--- JOIN department 
--- ON role.department_id = department_id
--- LEFT JOIN employee AS manager
--- ON employee.manager_id = manager_id
+
