@@ -29,7 +29,7 @@ const newDepartment = [
   },
 ];
 
-// this is where all my prompts go
+// initialPrompt function displays all all choices from the initialChoice variable
 function initialPrompt() {
   inquirer.prompt(initialChoice).then((answer) => {
     switch (answer.initialChoice) {
@@ -63,6 +63,7 @@ function initialPrompt() {
   });
 }
 
+// getDepartment function allows user to view all the departments (id, name)
 function getDepartments() {
   db.query(`SELECT * FROM department`, (err, res) => {
     console.table(res);
@@ -70,6 +71,7 @@ function getDepartments() {
   });
 }
 
+// getRoles function allows user to view all roles (id, title, salary, department)
 function getRoles() {
   db.query(
     `SELECT role.id, role.title, role.salary, department.name AS department FROM role LEFT JOIN department ON department.id = role.department_id`,
@@ -80,6 +82,7 @@ function getRoles() {
   );
 }
 
+// getEmployees function allows user to view all employees (id, first_name, last_name, title, salary, department, manager)
 function getEmployees() {
   db.query(
     `SELECT employee.id, employee.first_name, employee.last_name, title, salary, name AS department, CONCAT(manager.first_name, " " , manager.last_name) AS manager FROM employee JOIN role ON employee.role_id = role.id JOIN department ON role.department_id = department.id LEFT JOIN employee AS manager ON employee.manager_id = manager.id`,
@@ -90,6 +93,7 @@ function getEmployees() {
   );
 }
 
+// addDepartment function adds new department
 function addDepartment() {
   inquirer.prompt(newDepartment).then((answer) => {
     db.query(`INSERT INTO department(name) VALUES (?)`, [answer.department], (err, res) => {
@@ -99,6 +103,7 @@ function addDepartment() {
   });
 }
 
+// addRole funstion adds new role and salary
 function addRole() {
   db.query("SELECT * FROM department", (err, res) => {
     const departments = res.map((dep) => {
@@ -139,6 +144,7 @@ function addRole() {
   });
 }
 
+// addEmployee functions adds new employee
 function addEmployee() {
   db.query("SELECT * FROM role", (err, res) => {
     const roles = res.map((role) => {
@@ -201,6 +207,7 @@ function addEmployee() {
   });
 }
 
+// updateEmployee function updates current employee, their role, and salary
 function updateEmployee() {
   db.query("SELECT * FROM employee", (err, res) => {
     const employee = res.map((employee) => {
@@ -241,6 +248,7 @@ function updateEmployee() {
   });
 }
 
+// end Tracker function adds the option to exit/end the Employee tracker when finished
 const endTracker = () => {
   process.exit();
 };
