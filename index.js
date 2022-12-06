@@ -220,14 +220,10 @@ function updateEmployee() {
           },
         ])
         .then((answer) => {
-          db.query(
-            "INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
-            [answer.firstName, answer.lastName, answer.employeeRole, answer.employeeManager],
-            (err, res) => {
-              console.log("Updated Role");
-              initialPrompt();
-            }
-          );
+          db.query("UPDATE employee SET role_id = ? WHERE id = ?", [answer.employeeRole, answer.updateEmployee], (err, res) => {
+            console.log("Updated Role");
+            initialPrompt();
+          });
         });
     });
   });
