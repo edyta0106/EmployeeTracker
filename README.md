@@ -35,4 +35,6 @@ SO THAT I can organize and plan my business
 
 The following video shows an example of the application being used from the command line:
 
-[Employee Tracker Video Link]()
+[Employee Tracker Video Link](https://drive.google.com/file/d/13I6GoqLmKA-VaKFzLGdZLVYZ0_hm0Z02/view)
+
+Enjoy!!!
