@@ -7,7 +7,16 @@ const initialChoice = [
   {
     type: "list",
     message: "What would you like to do?",
-    choices: ["View all Departments", "View all Roles", "View all Employees", "Add Department", "Add Role", "Add Employee", "Update Employee Role"],
+    choices: [
+      "View all Departments",
+      "View all Roles",
+      "View all Employees",
+      "Add Department",
+      "Add Role",
+      "Add Employee",
+      "Update Employee Role",
+      "Exit",
+    ],
     name: "initialChoice",
   },
 ];
@@ -44,6 +53,9 @@ function initialPrompt() {
         break;
       case "Update Employee Role":
         updateEmployee();
+        break;
+      case "Exit":
+        endTracker();
         break;
       default:
         initialPrompt();
@@ -228,5 +240,9 @@ function updateEmployee() {
     });
   });
 }
+
+const endTracker = () => {
+  process.exit();
+};
 
 initialPrompt();
